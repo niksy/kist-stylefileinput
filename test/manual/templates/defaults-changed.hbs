@@ -1,0 +1,23 @@
+{{> top title="Defaults changed"}}
+
+	<style>
+
+		input[type="file"]:focus + span {
+			outline:1px dotted #000;
+		}
+
+	</style>
+
+	<div class="sandbox">
+		<input type="file" id="upload" />
+	</div>
+
+	<script>
+
+		$.fn.stylefileinput.defaults.labels.buttonBrowse = 'LABEL CHANGED';
+
+		$('#upload').stylefileinput();
+
+	</script>
+
+{{> bottom}}
