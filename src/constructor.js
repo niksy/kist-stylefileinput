@@ -37,13 +37,13 @@ $.extend(Stylefileinput.prototype, {
 
 	handleFocus: function () {
 
-		this.$el.data(meta.ns.dataAttr + '-val', this.$el.val());
+		this.$el.data(meta.ns.dataAttr + '-file-name', this.$el.val());
 
 	},
 
 	handleCheckChange: function () {
 
-		if ( this.$el.val() && this.$el.val() !== this.$el.data(meta.ns.dataAttr + '-val') ) {
+		if ( this.$el.val() && this.$el.val() !== this.$el.data(meta.ns.dataAttr + '-file-name') ) {
 			this.$el.trigger('change' + this.ens);
 		}
 
@@ -52,16 +52,15 @@ $.extend(Stylefileinput.prototype, {
 	handleChange: function () {
 
 		var fileName = this.$el.val().split(/\\/).pop();
-		var inputFieldText = fileName;
 		var buttonLabel = this.options.labels.buttonChange;
 
 		if ( !fileName ) {
-			inputFieldText = this.options.labels.val;
+			fileName = this.options.labels.fileName;
 			buttonLabel = this.options.labels.buttonBrowse;
 		}
 
-		this.$val
-			.text(inputFieldText);
+		this.$fileName
+			.text(fileName);
 
 		this.$button
 			.text(buttonLabel);
@@ -73,7 +72,7 @@ $.extend(Stylefileinput.prototype, {
 	 */
 	handleClick: function () {
 
-		this.$el.data(meta.ns.dataAttr + '-val', this.$el.val());
+		this.$el.data(meta.ns.dataAttr + '-file-name', this.$el.val());
 
 		setTimeout($.proxy(this.handleCheckChange, this), 100);
 
@@ -101,13 +100,13 @@ $.extend(Stylefileinput.prototype, {
 		labels: {
 			buttonBrowse: 'Browse',
 			buttonChange: 'Change',
-			val: 'No file selected'
+			fileName: 'No file selected'
 		},
 		classes: {
 			wrapper: meta.ns.htmlClass,
 			input: meta.ns.htmlClass + '-input',
 			button: meta.ns.htmlClass + '-button',
-			text: meta.ns.htmlClass + '-text'
+			fileName: meta.ns.htmlClass + '-fileName'
 		}
 	}
 

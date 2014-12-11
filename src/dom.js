@@ -18,21 +18,21 @@ module.exports = {
 			'aria-hidden': true
 		}).text(this.options.labels.buttonBrowse);
 
-		this.$val = $('<span />', {
-			'class': this.options.classes.text,
+		this.$fileName = $('<span />', {
+			'class': this.options.classes.fileName,
 			'aria-hidden': true
-		}).text(this.options.labels.val);
+		}).text(this.options.labels.fileName);
 
 		this.$wrapper
 			.insertBefore(this.$el)
-			.append(this.$el, this.$button, this.$val);
+			.append(this.$el, this.$button, this.$fileName);
 
 	},
 	destroy: function () {
 
 		this.$el
 			.removeClass(this.options.classes.input)
-			.removeData(meta.ns.dataAttr + '-val')
+			.removeData(meta.ns.dataAttr + '-file-name')
 			.insertBefore(this.$wrapper);
 
 		this.$wrapper
