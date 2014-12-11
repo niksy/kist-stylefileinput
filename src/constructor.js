@@ -52,12 +52,19 @@ $.extend(Stylefileinput.prototype, {
 	handleChange: function () {
 
 		var fileName = this.$el.val().split(/\\/).pop();
+		var inputFieldText = fileName;
+		var buttonLabel = this.options.labels.buttonChange;
+
+		if ( !fileName ) {
+			inputFieldText = this.options.labels.val;
+			buttonLabel = this.options.labels.buttonBrowse;
+		}
 
 		this.$val
-			.text(fileName);
+			.text(inputFieldText);
 
 		this.$button
-			.text(this.options.labels.buttonChange);
+			.text(buttonLabel);
 
 	},
 
