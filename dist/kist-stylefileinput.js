@@ -1,4 +1,4 @@
-/*! kist-stylefileinput 0.1.0 - Style file input elements. | Author: Ivan Nikolić <niksy5@gmail.com> (http://ivannikolic.com/), 2014 | License: MIT */
+/*! kist-stylefileinput 0.1.1 - Style file input elements. | Author: Ivan Nikolić <niksy5@gmail.com> (http://ivannikolic.com/), 2014 | License: MIT */
 !function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self);var n=f;n=n.jQuery||(n.jQuery={}),n=n.fn||(n.fn={}),n.stylefileinput=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 var Ctor = require(3);
 var meta = require(7);
@@ -92,13 +92,13 @@ $.extend(Stylefileinput.prototype, {
 
 	handleFocus: function () {
 
-		this.$el.data(meta.ns.dataAttr + '-val', this.$el.val());
+		this.$el.data(meta.ns.dataAttr + '-file-name', this.$el.val());
 
 	},
 
 	handleCheckChange: function () {
 
-		if ( this.$el.val() && this.$el.val() !== this.$el.data(meta.ns.dataAttr + '-val') ) {
+		if ( this.$el.val() && this.$el.val() !== this.$el.data(meta.ns.dataAttr + '-file-name') ) {
 			this.$el.trigger('change' + this.ens);
 		}
 
@@ -107,12 +107,18 @@ $.extend(Stylefileinput.prototype, {
 	handleChange: function () {
 
 		var fileName = this.$el.val().split(/\\/).pop();
+		var buttonLabel = this.options.labels.buttonChange;
 
-		this.$val
+		if ( !fileName ) {
+			fileName = this.options.labels.fileName;
+			buttonLabel = this.options.labels.buttonBrowse;
+		}
+
+		this.$fileName
 			.text(fileName);
 
 		this.$button
-			.text(this.options.labels.buttonChange);
+			.text(buttonLabel);
 
 	},
 
@@ -121,7 +127,7 @@ $.extend(Stylefileinput.prototype, {
 	 */
 	handleClick: function () {
 
-		this.$el.data(meta.ns.dataAttr + '-val', this.$el.val());
+		this.$el.data(meta.ns.dataAttr + '-file-name', this.$el.val());
 
 		setTimeout($.proxy(this.handleCheckChange, this), 100);
 
@@ -149,13 +155,13 @@ $.extend(Stylefileinput.prototype, {
 		labels: {
 			buttonBrowse: 'Browse',
 			buttonChange: 'Change',
-			val: 'No file selected'
+			fileName: 'No file selected'
 		},
 		classes: {
 			wrapper: meta.ns.htmlClass,
 			input: meta.ns.htmlClass + '-input',
 			button: meta.ns.htmlClass + '-button',
-			text: meta.ns.htmlClass + '-text'
+			fileName: meta.ns.htmlClass + '-fileName'
 		}
 	}
 
@@ -184,21 +190,21 @@ module.exports = {
 			'aria-hidden': true
 		}).text(this.options.labels.buttonBrowse);
 
-		this.$val = $('<span />', {
-			'class': this.options.classes.text,
+		this.$fileName = $('<span />', {
+			'class': this.options.classes.fileName,
 			'aria-hidden': true
-		}).text(this.options.labels.val);
+		}).text(this.options.labels.fileName);
 
 		this.$wrapper
 			.insertBefore(this.$el)
-			.append(this.$el, this.$button, this.$val);
+			.append(this.$el, this.$button, this.$fileName);
 
 	},
 	destroy: function () {
 
 		this.$el
 			.removeClass(this.options.classes.input)
-			.removeData(meta.ns.dataAttr + '-val')
+			.removeData(meta.ns.dataAttr + '-file-name')
 			.insertBefore(this.$wrapper);
 
 		this.$wrapper
