@@ -1,4 +1,4 @@
-/*! kist-stylefileinput 0.1.1 - Style file input elements. | Author: Ivan Nikolić <niksy5@gmail.com> (http://ivannikolic.com/), 2014 | License: MIT */
+/*! kist-stylefileinput 0.1.2 - Style file input elements. | Author: Ivan Nikolić <niksy5@gmail.com> (http://ivannikolic.com/), 2014 | License: MIT */
 !function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self);var n=f;n=n.jQuery||(n.jQuery={}),n=n.fn||(n.fn={}),n.stylefileinput=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 (function (global){
 var $ = (typeof window !== "undefined" ? window.$ : typeof global !== "undefined" ? global.$ : null);
@@ -194,7 +194,9 @@ module.exports = {
 },{}],4:[function(require,module,exports){
 var Ctor = require(1);
 var meta = require(6);
-var isPublicMethod = require(7)(meta.publicMethods);
+var isPublicMethod = require(9)(meta.publicMethods);
+var appendClass = require(7)(Ctor.prototype.defaults.classes);
+var appendNamespacedClasses = require(8)(Ctor.prototype.defaults.classes, meta.ns.htmlClass);
 
 /**
  * @param  {Object|String} options
@@ -219,6 +221,8 @@ var plugin = module.exports = function ( options ) {
 
 };
 plugin.defaults = Ctor.prototype.defaults;
+plugin.appendClass = appendClass;
+plugin.appendNamespacedClasses = appendNamespacedClasses;
 
 },{}],5:[function(require,module,exports){
 var meta = require(6);
@@ -246,6 +250,56 @@ module.exports = {
 };
 
 },{}],7:[function(require,module,exports){
+(function (global){
+var $ = (typeof window !== "undefined" ? window.$ : typeof global !== "undefined" ? global.$ : null);
+
+/**
+ * @param  {Object} classes
+ *
+ * @return {Function}
+ */
+module.exports = function ( classes ) {
+
+	/**
+	 * @param  {String} prop
+	 * @param  {String} className
+	 *
+	 * @return {String}
+	 */
+	return function ( prop, className ) {
+		return [classes[prop], className].join(' ');
+	};
+};
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],8:[function(require,module,exports){
+(function (global){
+var $ = (typeof window !== "undefined" ? window.$ : typeof global !== "undefined" ? global.$ : null);
+
+/**
+ * @param  {Object} classes
+ * @param  {String} defaultNs
+ *
+ * @return {Function}
+ */
+module.exports = function ( classes, defaultNs ) {
+
+	/**
+	 * @param  {String} ns
+	 *
+	 * @return {Object}
+	 */
+	return function ( ns ) {
+		return $.extend.apply(null, $.map(classes, function ( val, key ) {
+			var o = {};
+			o[key] = $.trim([val, (val.indexOf(defaultNs) !== -1 ? val.replace(defaultNs, ns) : '')].join(' '));
+			return o;
+		}));
+	};
+};
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],9:[function(require,module,exports){
 (function (global){
 var $ = (typeof window !== "undefined" ? window.$ : typeof global !== "undefined" ? global.$ : null);
 
