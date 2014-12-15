@@ -4,9 +4,9 @@
   "description": "Style file input elements.",
   "author": "Ivan Nikolić <niksy5@gmail.com> (http://ivannikolic.com/)",
   "license": "MIT",
-  "main": "index.js",
+  "main": "lib/index.js",
   "files": [
-    "index.scss"
+    "lib/index.scss"
   ],
   "directories": {
     "test": "test"
@@ -51,6 +51,7 @@
     "url": "https://github.com/niksy/kist-stylefileinput.git"
   },
   "keywords": [
+    "kist",
     "fileinput",
     "style",
     "browserify"

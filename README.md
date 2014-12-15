@@ -77,4 +77,4 @@ Tested in IE8+ and all modern browsers.
 
 ## License
 
-MIT © [Ivan Nikolić](http://ivannikolic.com)
+MIT © [Ivan Nikolić](http://ivannikolic.com) | MIT © [Filament Group](http://www.filamentgroup.com/)

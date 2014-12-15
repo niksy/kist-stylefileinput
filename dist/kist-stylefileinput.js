@@ -1,63 +1,11 @@
 /*! kist-stylefileinput 0.1.1 - Style file input elements. | Author: Ivan Nikolić <niksy5@gmail.com> (http://ivannikolic.com/), 2014 | License: MIT */
 !function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self);var n=f;n=n.jQuery||(n.jQuery={}),n=n.fn||(n.fn={}),n.stylefileinput=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-var Ctor = require(3);
-var meta = require(7);
-var isPublicMethod = require(2)(meta.publicMethods);
-
-/**
- * @param  {Object|String} options
- *
- * @return {jQuery}
- */
-var plugin = module.exports = function ( options ) {
-
-	options = options || {};
-
-	return this.each(function () {
-
-		var instance = $.data(this, meta.name);
-
-		if ( isPublicMethod(options) && instance ) {
-			instance[options]();
-		} else if ( typeof(options) === 'object' && !instance ) {
-			$.data(this, meta.name, new Ctor(this, options));
-		}
-
-	});
-
-};
-plugin.defaults = Ctor.prototype.defaults;
-
-},{}],2:[function(require,module,exports){
 (function (global){
 var $ = (typeof window !== "undefined" ? window.$ : typeof global !== "undefined" ? global.$ : null);
-
-/**
- * @param  {Array} methods
- *
- * @return {Function}
- */
-module.exports = function ( methods ) {
-
-	/**
-	 * @param  {String} name
-	 *
-	 * @return {Boolean}
-	 */
-	return function ( name ) {
-		return typeof(name) === 'string' && $.inArray(name, methods || []) !== -1;
-	};
-
-};
-
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],3:[function(require,module,exports){
-(function (global){
-var $ = (typeof window !== "undefined" ? window.$ : typeof global !== "undefined" ? global.$ : null);
-var instance = require(6);
-var dom = require(4);
-var events = require(5);
-var meta = require(7);
+var instance = require(5);
+var dom = require(2);
+var events = require(3);
+var meta = require(6);
 
 /**
  * @class
@@ -168,10 +116,10 @@ $.extend(Stylefileinput.prototype, {
 });
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],4:[function(require,module,exports){
+},{}],2:[function(require,module,exports){
 (function (global){
 var $ = (typeof window !== "undefined" ? window.$ : typeof global !== "undefined" ? global.$ : null);
-var meta = require(7);
+var meta = require(6);
 
 module.exports = {
 	setup: function () {
@@ -214,7 +162,7 @@ module.exports = {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],5:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 (function (global){
 var $ = (typeof window !== "undefined" ? window.$ : typeof global !== "undefined" ? global.$ : null);
 
@@ -243,8 +191,37 @@ module.exports = {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],6:[function(require,module,exports){
-var meta = require(7);
+},{}],4:[function(require,module,exports){
+var Ctor = require(1);
+var meta = require(6);
+var isPublicMethod = require(7)(meta.publicMethods);
+
+/**
+ * @param  {Object|String} options
+ *
+ * @return {jQuery}
+ */
+var plugin = module.exports = function ( options ) {
+
+	options = options || {};
+
+	return this.each(function () {
+
+		var instance = $.data(this, meta.name);
+
+		if ( isPublicMethod(options) && instance ) {
+			instance[options]();
+		} else if ( typeof(options) === 'object' && !instance ) {
+			$.data(this, meta.name, new Ctor(this, options));
+		}
+
+	});
+
+};
+plugin.defaults = Ctor.prototype.defaults;
+
+},{}],5:[function(require,module,exports){
+var meta = require(6);
 var instance = 0;
 
 module.exports = {
@@ -257,7 +234,7 @@ module.exports = {
 	}
 };
 
-},{}],7:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 module.exports = {
 	name: 'stylefileinput',
 	ns: {
@@ -268,5 +245,28 @@ module.exports = {
 	publicMethods: ['destroy']
 };
 
-},{}]},{},[1])(1)
+},{}],7:[function(require,module,exports){
+(function (global){
+var $ = (typeof window !== "undefined" ? window.$ : typeof global !== "undefined" ? global.$ : null);
+
+/**
+ * @param  {Array} methods
+ *
+ * @return {Function}
+ */
+module.exports = function ( methods ) {
+
+	/**
+	 * @param  {String} name
+	 *
+	 * @return {Boolean}
+	 */
+	return function ( name ) {
+		return typeof(name) === 'string' && $.inArray(name, methods || []) !== -1;
+	};
+
+};
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}]},{},[4])(4)
 });

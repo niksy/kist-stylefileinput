@@ -16,7 +16,7 @@ module.exports = function ( grunt ) {
 				},
 				files: {
 					'dist/<%= pkg.name %>.js': ['compiled/<%= pkg.main %>'],
-					'dist/<%= pkg.name %>.css': ['compiled/index.css']
+					'dist/<%= pkg.name %>.css': ['compiled/lib/style/index.css']
 				}
 			}
 		},
@@ -38,7 +38,7 @@ module.exports = function ( grunt ) {
 					banner: '<%= meta.banner %>'
 				},
 				files: {
-					'dist/<%= pkg.name %>.min.css': ['compiled/index.css']
+					'dist/<%= pkg.name %>.min.css': ['compiled/lib/style/index.css']
 				}
 			}
 		},
@@ -65,7 +65,7 @@ module.exports = function ( grunt ) {
 				files: {
 					src: [
 						'<%= pkg.main %>',
-						'src/**/*.js'
+						'lib/**/*.js'
 					]
 				}
 			}
@@ -78,7 +78,7 @@ module.exports = function ( grunt ) {
 				},
 				src: [
 					'<%= pkg.main %>',
-					'src/**/*.js'
+					'lib/**/*.js'
 				]
 			}
 		},
@@ -89,7 +89,7 @@ module.exports = function ( grunt ) {
 			},
 			main: {
 				files: {
-					'compiled/index.css': 'index.scss'
+					'compiled/lib/style/index.css': 'lib/style/index.scss'
 				}
 			}
 		},
@@ -123,7 +123,8 @@ module.exports = function ( grunt ) {
 				templateData: {
 					bower: '../../../bower_components',
 					compiled: '../../../compiled',
-					assets: 'assets'
+					assets: 'assets',
+					main: '<%= pkg.main %>'
 				},
 				partials: 'test/manual/templates/partials/**/*.hbs',
 				template: 'test/manual/templates/*.hbs',
@@ -165,11 +166,11 @@ module.exports = function ( grunt ) {
 				tasks: ['compile-handlebars:test']
 			},
 			sass: {
-				files: ['src/**/*.scss'],
+				files: ['lib/**/*.scss'],
 				tasks: ['sass:main']
 			},
 			browserify: {
-				files: ['<%= pkg.main %>', 'src/**/*.js'],
+				files: ['<%= pkg.main %>', 'lib/**/*.js'],
 				tasks: ['browserify:standalone']
 			}
 		}
