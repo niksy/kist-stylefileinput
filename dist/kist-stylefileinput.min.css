@@ -1,2 +1,2 @@
-/*! kist-stylefileinput 0.1.3 - Style file input elements. | Author: Ivan Nikolić <niksy5@gmail.com> (http://ivannikolic.com/), 2014 | License: MIT */
+/*! kist-stylefileinput 0.1.4 - Style file input elements. | Author: Ivan Nikolić <niksy5@gmail.com> (http://ivannikolic.com/), 2014 | License: MIT */
 .kist-Stylefileinput{position:relative}.kist-Stylefileinput-input{opacity:0;filter:alpha(opacity=0);position:absolute;z-index:1000;border:0;height:100px;cursor:pointer;background:0 0}.kist-Stylefileinput-input[disabled]{opacity:.5;filter:alpha(opacity=50);cursor:default}
