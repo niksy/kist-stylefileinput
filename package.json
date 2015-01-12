@@ -5,9 +5,7 @@
   "author": "Ivan Nikolić <niksy5@gmail.com> (http://ivannikolic.com/)",
   "license": "MIT",
   "main": "lib/index.js",
-  "files": [
-    "lib/index.scss"
-  ],
+  "style": "lib/style/index.scss",
   "directories": {
     "test": "test"
   },

@@ -89,7 +89,7 @@ module.exports = function ( grunt ) {
 			},
 			main: {
 				files: {
-					'compiled/lib/style/index.css': 'lib/style/index.scss'
+					'compiled/lib/style/index.css': '<%= pkg.style %>'
 				}
 			}
 		},
