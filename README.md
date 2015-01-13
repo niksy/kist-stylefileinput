@@ -14,7 +14,7 @@ Basic styling for file input is provided with CSS.
 
 ## API
 
-### `.stylefileinput(options)`
+### `$Element.stylefileinput(options)`
 
 #### options
 
@@ -70,6 +70,10 @@ Destroy plugin instance.
 ```js
 $('input').stylefileinput();
 ```
+
+## Caveats
+
+* Opera Mini doesn’t fire `change` event when input value is changed so it won’re replace default text.
 
 ## Browser support
 
