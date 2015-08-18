@@ -1,6 +1,6 @@
 {
   "name": "kist-stylefileinput",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Style file input elements.",
   "author": "Ivan Nikolić <niksy5@gmail.com> (http://ivannikolic.com/)",
   "license": "MIT",
@@ -10,7 +10,8 @@
     "test": "test"
   },
   "dependencies": {
-    "jquery": "^1.11.1"
+    "jquery": "^1.11.1",
+    "kist-toolbox": "^0.3.5"
   },
   "devDependencies": {
     "browserify": "^7.0.0",
