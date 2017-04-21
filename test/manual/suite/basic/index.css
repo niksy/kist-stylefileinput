@@ -1,0 +1,12 @@
+@import url('suitcss-components-test');
+@import url('../../../../index.css');
+
+input[type="file"]:focus + span {
+	outline: 1px dotted #000;
+}
+
+.Test-run--basicElement .kist-Stylefileinput {
+	background: hotpink;
+	padding: 20px;
+	max-width: 300px;
+}

@@ -1,0 +1,17 @@
+.kist-Stylefileinput {
+	position: relative;
+	overflow: hidden;
+}
+
+.kist-Stylefileinput-input {
+	opacity: 0;
+	position: absolute; z-index: 1000;
+	border: 1px solid #000;
+	height: 100px;
+	cursor: pointer;
+	background: transparent;
+}
+
+.kist-Stylefileinput-input[disabled] {
+	cursor: default;
+}

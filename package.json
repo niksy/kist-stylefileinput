@@ -1,62 +1,89 @@
 {
-  "name": "kist-stylefileinput",
+  "name": "style-file-input",
   "version": "0.1.6",
-  "description": "Style file input elements.",
-  "author": "Ivan Nikolić <niksy5@gmail.com> (http://ivannikolic.com/)",
+  "description": "Style file input element.",
+  "main": "dist/index.js",
+  "author": "Ivan Nikolić <niksy5@gmail.com> (http://ivannikolic.com)",
   "license": "MIT",
-  "main": "lib/index.js",
-  "style": "lib/style/index.scss",
+  "style": "index.css",
   "directories": {
     "test": "test"
   },
+  "scripts": {
+    "build": "babel '{index,lib/**/*}.js' --out-dir dist/",
+    "lint": "eslint '{index,test/**/*}.js' && stylelint 'index.css'",
+    "prepublish": "npm run build",
+    "test": "npm run lint && npm run test:automated && npm run test:integration",
+    "test:automated": "karma start",
+    "test:automated:local": "karma start --browsers Chrome",
+    "test:integration": "gulp test:prepare && wdio",
+    "test:integration:local": "eval \"$(docker-machine env dev)\" && gulp test:prepare && wdio --local --host $(docker-machine ip dev)",
+    "test:manual:local": "gulp test:local:manual --watch"
+  },
   "dependencies": {
-    "jquery": "^1.11.1",
-    "kist-toolbox": "^0.3.5"
+    "class-list": "^0.1.1",
+    "classlist-multiple-values": "^1.0.1",
+    "xtend": "^4.0.1"
   },
   "devDependencies": {
-    "browserify": "^7.0.0",
-    "browserify-shim": "^3.8.1",
-    "bundle-collapser": "^1.1.0",
-    "grunt": "^0.4.5",
-    "grunt-browserify": "^3.2.1",
-    "grunt-bump": "^0.0.13",
-    "grunt-compile-handlebars": "^1.0.0",
-    "grunt-concurrent": "^1.0.0",
-    "grunt-contrib-concat": "^0.4.0",
-    "grunt-contrib-connect": "^0.9.0",
-    "grunt-contrib-copy": "^0.7.0",
-    "grunt-contrib-cssmin": "^0.10.0",
-    "grunt-contrib-jshint": "^0.10.0",
-    "grunt-contrib-sass": "^0.8.1",
-    "grunt-contrib-uglify": "^0.4.0",
-    "grunt-contrib-watch": "^0.6.1",
-    "grunt-jscs": "^0.6.1",
-    "kist-toolbox": "^0.3.1",
-    "load-grunt-tasks": "^0.6.0"
+    "@niksy/babayaga": "^0.1.1",
+    "babel-cli": "^6.18.0",
+    "babel-preset-niksy": "^1.0.0",
+    "babel-register": "^6.18.0",
+    "babelify": "^7.3.0",
+    "browserify-babel-istanbul": "^0.4.0",
+    "browserify-istanbul": "^2.0.0",
+    "del": "^2.2.0",
+    "eslint": "^3.1.1",
+    "eslint-config-niksy": "^3.0.1",
+    "execa": "^0.4.0",
+    "globby": "^4.1.0",
+    "gulp": "^3.9.1",
+    "gulp-debug": "^2.1.2",
+    "gulp-nunjucks-render": "^2.0.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-postcss": "^6.4.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-util": "^3.0.7",
+    "http-shutdown": "^1.0.3",
+    "istanbul": "^0.4.3",
+    "karma": "^1.1.0",
+    "karma-browserify": "^5.0.5",
+    "karma-browserstack-launcher": "^1.0.0",
+    "karma-chrome-launcher": "^1.0.1",
+    "karma-coverage": "^1.0.0",
+    "karma-html2js-preprocessor": "^1.0.0",
+    "karma-mocha": "~1.0.1",
+    "karma-mocha-reporter": "^2.0.3",
+    "local-web-server": "^1.2.4",
+    "minimist": "^1.2.0",
+    "mocha": "^3.1.2",
+    "opn": "^4.0.2",
+    "postcss-import": "^9.1.0",
+    "simulant": "^0.2.2",
+    "stylelint": "^7.0.3",
+    "stylelint-config-niksy": "^3.0.1",
+    "suitcss-components-test": "^1.0.0",
+    "wdio-browserstack-service": "^0.1.3",
+    "wdio-mocha-framework": "^0.5.4",
+    "wdio-spec-reporter": "^0.0.2",
+    "webdriverio": "^4.0.9"
   },
-  "browserify": {
-    "transform": [
-      "browserify-shim"
-    ]
-  },
-  "browserify-shim": {
-    "jquery": "global:$"
-  },
-  "scripts": {
-    "test": "grunt test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/niksy/kist-stylefileinput.git"
+  "engines": {
+    "node": ">=4"
   },
   "keywords": [
-    "kist",
+    "file",
     "fileinput",
-    "style",
-    "browserify"
+    "input",
+    "style"
   ],
-  "bugs": {
-    "url": "https://github.com/niksy/kist-stylefileinput/issues"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/niksy/style-file-input.git"
   },
-  "homepage": "https://github.com/niksy/kist-stylefileinput"
+  "bugs": {
+    "url": "https://github.com/niksy/style-file-input/issues"
+  },
+  "homepage": "https://github.com/niksy/style-file-input#readme"
 }
