@@ -1,6 +1,6 @@
 {
   "name": "style-file-input",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Style file input element.",
   "main": "dist/index.js",
   "author": "Ivan Nikolić <niksy5@gmail.com> (http://ivannikolic.com)",
