@@ -3,6 +3,7 @@
 const extend = require('xtend/mutable');
 const classList = require('class-list');
 const classListMultipleValues = require('classlist-multiple-values');
+const offset = require('global-offset');
 
 /**
  * @param {Element} element
@@ -174,9 +175,9 @@ extend(Stylefileinput.prototype, {
 	 */
 	positionInput: function ( e ) {
 
-		const wrapperElementRect = this.wrapperElement.getBoundingClientRect();
-		const offsetTop = wrapperElementRect.top + document.body.scrollTop;
-		const offsetLeft = wrapperElementRect.left + document.body.scrollLeft;
+		const wrapperElementOffset = offset(this.wrapperElement);
+		const offsetTop = wrapperElementOffset.top;
+		const offsetLeft = wrapperElementOffset.left;
 
 		this.element.style.left = `${(e.pageX - offsetLeft) - this.element.offsetWidth + 20}px`;
 		this.element.style.top = `${(e.pageY - offsetTop) - 10}px`;
