@@ -11,7 +11,7 @@ describe('Default', function () {
 		const fileTwo = path.resolve(__dirname, '../manual/fixtures/corgi-02.jpg');
 		const selector = '.Test-run--basicElement input[type="file"]';
 
-		browser.url('/basic');
+		browser.url('/');
 
 		assert.equal(browser.getText('.Test-run--basicElement .kist-Stylefileinput-button'), 'Browse');
 		assert.equal(browser.getText('.Test-run--basicElement .kist-Stylefileinput-text'), 'No file selected');
