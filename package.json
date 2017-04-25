@@ -16,8 +16,10 @@
     "test": "npm run lint && npm run test:automated && npm run test:integration",
     "test:automated": "karma start",
     "test:automated:local": "karma start --browsers Chrome",
+    "test:automated:local:watch": "npm run test:automated:local -- --auto-watch --no-single-run",
     "test:integration": "gulp test:prepare && wdio",
     "test:integration:local": "eval \"$(docker-machine env dev)\" && gulp test:prepare && wdio --local --host $(docker-machine ip dev)",
+    "test:integration:local:watch": "eval \"$(docker-machine env dev)\" && gulp test:prepare --watch | wdio --local --host $(docker-machine ip dev) --watch",
     "test:manual:local": "gulp test:local:manual --watch"
   },
   "dependencies": {

@@ -1,6 +1,6 @@
 'use strict';
 
-const stylefileinput = require('../../../../index');
+const stylefileinput = require('../../index');
 
 // Basic element
 

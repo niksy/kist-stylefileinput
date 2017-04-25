@@ -1,5 +1,5 @@
 @import url('suitcss-components-test');
-@import url('../../../../index.css');
+@import url('../../index.css');
 
 input[type="file"]:focus + span {
 	outline: 1px dotted #000;

@@ -64,14 +64,6 @@ Type: `Object`
 
 Destroy instance.
 
-## Test
-
-For local automated tests, run `npm run test:automated:local`.
-
-For local integration tests, run `npm run test:integration:local`.
-
-For manual tests, run `npm run test:manual:local` and open <http://localhost:9000/> in your browser.
-
 ## Browser support
 
 Tested in IE9+ and all modern browsers.
@@ -83,6 +75,14 @@ Tested in IE9+ and all modern browsers.
 ## Acknowledgments
 
 * Based on [Filament Group’s jQuery Custom File Input](https://github.com/filamentgroup/jQuery-Custom-File-Input).
+
+## Test
+
+For local automated tests, run `npm run test:automated:local` (append `:watch` for watcher support).
+
+For local integration tests, run `npm run test:integration:local` (append `:watch` for watcher support).
+
+For manual tests, run `npm run test:manual:local` and open <http://localhost:9000/> in your browser.
 
 ## License
 
