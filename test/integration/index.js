@@ -7,8 +7,8 @@ describe('Default', function () {
 
 	it('should handle file input change', function () {
 
-		const fileOne = path.resolve(__dirname, '../manual/suite/basic/fixtures/corgi-01.jpg');
-		const fileTwo = path.resolve(__dirname, '../manual/suite/basic/fixtures/corgi-02.jpg');
+		const fileOne = path.resolve(__dirname, '../manual/fixtures/corgi-01.jpg');
+		const fileTwo = path.resolve(__dirname, '../manual/fixtures/corgi-02.jpg');
 		const selector = '.Test-run--basicElement input[type="file"]';
 
 		browser.url('/basic');
